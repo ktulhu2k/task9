@@ -1,0 +1,52 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  # Сервис базы данных PostgreSQL
+  db:
+    image: postgres:16-alpine
+    container_name: flight_db
+    environment:
+      POSTGRES_DB: flight_booking
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d flight_booking"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Сервис Redis
+  redis:
+    image: redis:7-alpine
+    container_name: flight_redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Сервис приложения (FastAPI)
+  app:
+    build: .
+    container_name: flight_app
+    environment:
+      DATABASE_URL: postgresql+psycopg2://user:password@db:5432/flight_booking
+      REDIS_HOST: redis
+      TESTING: '0'
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+redis
+requests
+python-dateutil==2.8.2
+pydantic>=2.5.0,<2.9.0
+passlib==1.7.4
+python-jose[cryptography]==3.3.0
+psycopg2-binary==2.9.11 --only-binary=psycopg2-binary
+email-validator
+authx
+itsdangerous>=2.0.1
+python-multipart
