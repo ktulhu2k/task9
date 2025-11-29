@@ -11,8 +11,6 @@ done
 
 echo "PostgreSQL готов."
 
-# Остальные команды
-#alembic revision --autogenerate -m "initial tables"
 alembic upgrade head
 python fill_data.py
 
