@@ -43,6 +43,6 @@ http://localhost:5000/docs   Swagger UI
 - Создастся БД flight_booking;
 - Выполнятся миграции;
 - Заполнятся тестовые рейсы и пользователи:
-admin / 123
-user1 / user123
-alice / secret
+admin/123;
+user1/user123;
+alice/secret;
