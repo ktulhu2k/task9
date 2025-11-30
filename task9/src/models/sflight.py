@@ -55,6 +55,6 @@ class SFlight(Base):
         ForeignKeyConstraint(['mandt', 'airpto_id'], ['sairport.mandt', 'sairport.id']),
     )
     
-    carrier = relationship("SCarr", back_populates="flights")
-    airport_from = relationship("SAirport", foreign_keys=[mandt, airpfrom_id])
-    airport_to = relationship("SAirport", foreign_keys=[mandt, airpto_id])
+    carrier = relationship("SCarr", back_populates="flights", overlaps="arrivals,departures")
+    airport_from = relationship("SAirport", foreign_keys=[mandt, airpfrom_id], overlaps="arrivals,carrier,departures,flights")
+    airport_to = relationship("SAirport", foreign_keys=[mandt, airpto_id], overlaps="airport_from,carrier,departures,flights,arrivals")

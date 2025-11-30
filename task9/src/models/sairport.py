@@ -20,5 +20,5 @@ class SAirport(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
     
-    departures = relationship("SFlight", foreign_keys="[SFlight.mandt, SFlight.airpfrom_id]")
-    arrivals = relationship("SFlight", foreign_keys="[SFlight.mandt, SFlight.airpto_id]")
+    departures = relationship("SFlight", foreign_keys="[SFlight.mandt, SFlight.airpfrom_id]", overlaps="arrivals")
+    arrivals = relationship("SFlight", foreign_keys="[SFlight.mandt, SFlight.airpto_id]", overlaps="departures")

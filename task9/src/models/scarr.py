@@ -20,4 +20,4 @@ class SCarr(Base):
     carrid = Column(String(3), primary_key=True)
     carrname = Column(String(200), nullable=False)
 
-    flights = relationship("SFlight", back_populates="carrier")
+    flights = relationship("SFlight", back_populates="carrier", overlaps="arrivals,departures")
