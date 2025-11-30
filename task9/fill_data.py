@@ -22,6 +22,7 @@ import random
 from src.database import Base, engine, SessionLocal
 from src.models import SCust, SAirport, SCarr, SFlight, SPFli, User
 from passlib.context import CryptContext
+from decimal import Decimal
 
 # Настройка хэширования паролей (для совместимости с auth-системой)
 pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
@@ -84,7 +85,7 @@ def main() -> None:
                 carrid=carr.carrid,
                 connid=f"{i:04d}",
                 fldate=date,
-                price=round(random.uniform(80, 300), 2),
+                price=Decimal(round(random.uniform(80, 300), 2)),
                 currency='EUR',
                 seatsmax=seats,
                 airpfrom_id=dep.id,

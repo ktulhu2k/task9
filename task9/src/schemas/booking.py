@@ -11,6 +11,7 @@ Pydantic-схемы, используемые для валидации запр
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
+from decimal import Decimal
 
 
 class BookRequest(BaseModel):
@@ -64,7 +65,7 @@ class AllBookingsResponse(BaseModel):
     cityto: str
     airpto: Optional[str] = None
     fltime: int
-    price: str #float не подходит, decimal отсутсвует. поэтому стринг
+    price: Decimal
     currency: str
 
     class Config:

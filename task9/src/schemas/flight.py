@@ -8,6 +8,7 @@
 
 from pydantic import BaseModel
 from typing import List
+from decimal import Decimal
 
 
 class FlightSearchResponse(BaseModel):
@@ -40,8 +41,8 @@ class FlightSearchResponse(BaseModel):
     available_seats: int
     """Количество свободных мест на рейсе."""
 
-    price: str
-    """Стоимость билета в виде строки для сохранения точности (например, '150.00'). str за неимением decimal"""
+    price: Decimal
+    """Стоимость билета в виде строки для сохранения точности (например, '150.00')"""
 
     currency: str
     """Валюта цены (например, 'EUR')."""
