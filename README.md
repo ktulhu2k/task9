@@ -32,9 +32,9 @@
 
 ### Запуск через Docker Compose
 
-# 1. Собрать и запустить контейнеры
+- Собрать и запустить контейнеры
 docker compose up --build
 
-# 2. Приложение доступно по адресу:
-#    http://localhost:5000/docs  → Swagger UI
+- Приложение доступно по адресу:
+http://localhost:5000/docs  → Swagger UI
 
